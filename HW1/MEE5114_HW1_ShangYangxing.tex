@@ -4,6 +4,7 @@
 \usepackage{bm}  % 加粗数学符号
 \usepackage{listings}  % 插入代码
 \usepackage{xcolor}  % 高亮代码
+\usepackage{amssymb}  % 空心粗体
 
 % 设置A4纸
 \usepackage[a4paper]{geometry} 
@@ -121,6 +122,70 @@ and getting the output as:
 \end{figure}
 
 \section{Matrix calculus}
+
+\subsection{Tutorial}
+
+\begin{equation}
+    \frac{\partial}{\partial X}f(X) = 
+    \begin{bmatrix}
+        \frac{\partial f(X)}{\partial X_{11}} & \cdots & \frac{\partial f(X)}{\partial X_{1m}} \\
+        \vdots & \frac{\partial f(X)}{\partial X_{ij}} & \vdots \\
+        \frac{\partial f(X)}{\partial X_{n1}} & \cdots & \frac{\partial f(X)}{\partial X_{nm}}
+    \end{bmatrix}
+    \label{equ:derivativeWRTMat}
+\end{equation}
+
+Derivative of scalar function $f(X)$ can be calculated 
+by taking derivatives of the scalar function with respect to 
+each elements $X_{ij}$ of the matrix $X$ separately, showing 
+as above equation (\ref{equ:derivativeWRTMat}). 
+
+Scalar function $f(X)$ project matrix variable 
+$X\in\mathbb{R}^{n\times m}$ to a scalar $y\in\mathbb{R}^{1}$,
+so its derivative is the partial derivative, except that 
+its results are arranged in form of a matrix, who has the same shape as $X$.
+
+For instance, let's say $X=\begin{bmatrix} X_{11}&X_{12}\\X_{21}&X_{22} \end{bmatrix}$,
+$f(X)=\begin{bmatrix}1&1\end{bmatrix}\begin{bmatrix}1\\1\end{bmatrix}
+\begin{bmatrix} X_{11}&X_{12}\\X_{21}&X_{22} \end{bmatrix}.$
+So $y=f(X)=X_{11}+X_{12}+X_{21}+X_{22}.$ And the partial derivative of $f(X)$ is
+\begin{equation}
+    \frac{\partial}{\partial X}f(X) = 
+    \begin{bmatrix} 
+        \frac{\partial f(X)}{\partial X_{11}} & \frac{\partial f(X)}{\partial X_{12}} \\ \\
+        \frac{\partial f(X)}{\partial X_{21}} & \frac{\partial f(X)}{\partial X_{22}}
+     \end{bmatrix}
+     =
+     \begin{bmatrix} 
+        1 & 1 \\
+        1 & 1
+     \end{bmatrix}
+\end{equation}
+
+\subsection{Derivative of Trace}
+
+\begin{equation}
+    \begin{aligned}
+        \frac{\partial}{\partial X}tr({AX}) &= \frac{\partial}{\partial X} tr(
+        \begin{bmatrix}
+            A_{11}X_{11} & \cdots & A_{1m}X_{m1} \\
+            \vdots & A_{ij}X_{ji} & \vdots \\
+            A_{n1}X_{1n} & \cdots & A_{nm}X_{mn}
+        \end{bmatrix}) \\
+        &= \frac{\partial}{\partial X} 
+        (A_{11}X_{11}+\cdots+A_{ij}X_{ji}+\cdots+A_{nm}X_{mn}) \\
+        &=
+        \begin{bmatrix}
+            A_{11} & \cdots & A_{n1} \\
+            \vdots & A_{ji} & \vdots \\
+            A_{1m} & \cdots & X_{mn}
+        \end{bmatrix}=A^T
+    \end{aligned}
+\end{equation}
+
+in which, $\frac{\partial}{\partial X_{ij}}
+(A_{11}X_{11}+\cdots+A_{ij}X_{ji}+\cdots+A_{nm}X_{mn})=A_{ji}$
+
 \section{Inner product}
 \section{Some linear algebra}
 \section{Gradient Flow}
