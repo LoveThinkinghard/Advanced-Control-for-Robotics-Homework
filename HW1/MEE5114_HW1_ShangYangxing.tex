@@ -1,6 +1,7 @@
 \documentclass[titlepage]{article}
-\usepackage{graphicx}
-\usepackage{amsmath}
+\usepackage{graphicx}  % 插入图片
+\usepackage{amsmath}  % 输入公式
+\usepackage{bm}  % 加粗数学符号
 
 % 设置A4纸
 \usepackage[a4paper]{geometry}  
@@ -16,7 +17,7 @@
 
 \section{ODE and Its Simulation}
 
-\subsection{Equation of Pendulum Motion}
+\subsection{Equation of Pendulum Motions}
 
 \begin{figure}[htbp]
     \centering
@@ -28,20 +29,56 @@
 By applying the Newton's law of dynamics, a pendulum with no external force can be formulated as:
 
 \begin{equation}
-    ml^2 \ddot{\theta} + mgl \sin{\theta} - T = 0
+    ml^2 \ddot{\theta} + ml^2 \alpha \dot{\theta} + mgl \sin{\theta} - T = 0.
 \end{equation}
 
-in which:
+in which,
 
 \quad $m$ is mass of the ball
 
 \quad $l$ is length of the rod
 
+\quad $\alpha$ is the damping constant
+
 \quad $g$ is the gravitational constant
 
-\quad $\theta$ is angle between the rod and the vertical axis, which is also the system output $y$
+\quad $\theta$ is angle measured between the rod and the vertical axis
 
 \quad $T$ is torque of the joint, which is also the control input $u$
+
+to a system of two first order equation by letting $x_1=\theta$, $x_2=\dot{\theta}$:
+
+\begin{equation}
+    \dot{x_1} = x_2, \quad \dot{x_2} = - \frac{g}{l}\sin{x_1} -\alpha x_2 + \frac{T}{ml^2}.
+\end{equation}
+
+Written in standard state-space form:
+
+\begin{equation}
+    \bm{\dot{x}} = 
+    \begin{bmatrix}
+        \dot{x_1} \\ \dot{x_2}
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+        x_2 \\ -\frac{g}{l}\sin{x_1} - \alpha x_2
+    \end{bmatrix}
+    +
+    \begin{bmatrix}
+        0 \\ \frac{1}{ml^2}
+    \end{bmatrix}
+    T
+\end{equation}
+
+\begin{equation}
+    \bm{y} = 
+    \begin{bmatrix}
+        x_1 \\ x_2
+    \end{bmatrix}
+    = \bm{x}
+\end{equation}
+
+\subsection{Simulation of Pendulum}
 
 
 
