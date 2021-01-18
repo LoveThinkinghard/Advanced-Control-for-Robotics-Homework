@@ -244,6 +244,37 @@ and we find that
 so, the angle between A and B is $\frac{\pi}{2}$.
 
 \section{Some linear algebra}
+
+\subsection{Condition}
+
+Take row reducion to $Ax=b$, if any row come up with the situation 
+that left part of the equation are zeros, while the right part is not, 
+then equation $Ax=b$ has no solution, else it has at least one solution.
+
+\subsection{Compute}
+
+$A$ has two linearly independent columns, so $rank(A)=2$. Knowing $a_3+a_1=a_2$ and $a_4-a_3=a_1$, so we can get $a_3=a_2-a_1$ 
+and $a_4=a_1+a_3=a_1+a_2-a_1=a_2$, so
+
+\begin{equation}
+    A=[a_1,a_2,a_3,a_4]=[a_1,a_2,a_2-a_1,a_2]
+\end{equation}
+
+We can easily find two independent vectors satisfying $Ax=0$
+
+\begin{equation}
+    x_1=
+    \begin{bmatrix}
+        1\\-1\\1\\0
+    \end{bmatrix},
+    x_2=
+    \begin{bmatrix}
+        1\\0\\1\\-1
+    \end{bmatrix}
+\end{equation}
+
+So, $Null(A)=\{x_1,x_2\}$
+
 \section{Gradient Flow}
 
 \end{document}
