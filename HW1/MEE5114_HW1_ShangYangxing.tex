@@ -191,7 +191,8 @@ in which, $\frac{\partial}{\partial X_{ij}}
 According to \textit{The Matrix Cookbook} equation (81), we have
 
 \begin{equation}
-        \frac{\partial x^TQx}{\partial x} = (Q+Q^T)x
+    \frac{\partial x^TQx}{\partial x} = (Q+Q^T)x
+    \label{equ:2-3}
 \end{equation}
 
 and we can derive that
@@ -248,7 +249,7 @@ so, the angle between A and B is $\frac{\pi}{2}$.
 \subsection{Condition}
 
 Take row reducion to $Ax=b$, if any row come up with the situation 
-that left hand side of the equation are zeros, while the right side is not, 
+that left-hand side of the equation are zeros, while the right-hand side is not, 
 then equation $Ax=b$ has no solution, else it has at least one solution.
 
 \subsection{Compute}
@@ -300,7 +301,7 @@ Let $x_1=\omega, x_2=\dot{\omega}, x=[x_1,x_2]^T$, we get
 
 \subsection{Characterize the Equilibrium}
 
-The equilibrium point satisfies $\dot(x)=0$, i.e.
+The equilibrium point satisfies $\dot{x}=0$, i.e.
 
 \begin{equation}
     \begin{cases}
@@ -316,6 +317,23 @@ The equilibrium point satisfies $\dot(x)=0$, i.e.
 
 \subsection{Simulation}
 
+According to the results in Problem 2.3, i.e. equation (\ref{equ:2-3}), we can derive that
 
+\begin{equation}
+    \nabla l(w)=\frac{\partial}{\partial w}(w^TQw+b^Tw)=(Q+Q^T)w+b
+\end{equation}
+
+so the system equations can be written as
+
+\begin{equation}
+    \begin{bmatrix}
+        \dot{x_1}\\\dot{x_2}
+    \end{bmatrix}
+    =\begin{bmatrix}
+        x_2\\-(Q+Q^T)x_1-Ax_2-b
+    \end{bmatrix}
+\end{equation}
+
+with the system equations, we code the following
 
 \end{document}
