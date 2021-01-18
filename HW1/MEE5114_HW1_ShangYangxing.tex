@@ -216,6 +216,32 @@ comprehensive above, we get
 
 \section{Inner product}
 
+\subsection{Angle between Two Vectors}
+
+The inner product of two vectors is $<x,y>=\|x\|\|y\|\cos{\theta}$, 
+so the angle $\theta$ equal to $\arccos{\frac{<x,y>}{\|x\|\|y\|}}$
+
+\subsection{Compute the Angle}
+
+Using the way to calculate the angle above, we get 
+
+\begin{equation}
+    \theta = \arccos{\frac{<A,B>}{\|A\|\|B\|}}
+\end{equation}
+
+and we find that
+
+\begin{equation}
+    <A,B>=tr(A^TB)=tr(
+    \begin{bmatrix}
+        -1 & 2 & 1 \\
+        -1 & 0 & 1 \\
+        -1 & 2 & 1
+    \end{bmatrix})
+    =0
+\end{equation}
+
+so, the angle between A and B is $\frac{\pi}{2}$.
 
 \section{Some linear algebra}
 \section{Gradient Flow}
