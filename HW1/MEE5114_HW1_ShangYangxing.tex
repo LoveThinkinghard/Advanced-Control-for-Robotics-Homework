@@ -111,7 +111,7 @@ When assuming $m=l=1$ with proper unit, equation (\ref{equ:state-space}) can be 
 
 according the equation, we code the simulation as following:
 
-\lstinputlisting[language=Python]{1-2 simulation of pendulum.py}
+\lstinputlisting[language=Python]{1_2_simulation_of_pendulum.py}
 
 and getting the output as:
 \begin{figure}[htbp]
@@ -248,7 +248,7 @@ so, the angle between A and B is $\frac{\pi}{2}$.
 \subsection{Condition}
 
 Take row reducion to $Ax=b$, if any row come up with the situation 
-that left part of the equation are zeros, while the right part is not, 
+that left hand side of the equation are zeros, while the right side is not, 
 then equation $Ax=b$ has no solution, else it has at least one solution.
 
 \subsection{Compute}
@@ -276,5 +276,46 @@ We can easily find two independent vectors satisfying $Ax=0$
 So, $Null(A)=\{x_1,x_2\}$
 
 \section{Gradient Flow}
+
+\subsection{State Space Form}
+
+Let $x_1=\omega, x_2=\dot{\omega}, x=[x_1,x_2]^T$, we get
+
+\begin{equation}
+    \dot{x}=
+    \begin{bmatrix}
+        \dot{x_1}\\\dot{x_2}
+    \end{bmatrix}
+    =\begin{bmatrix}
+        x_2\\-\nabla l(x_1)-Ax_2
+    \end{bmatrix}
+\end{equation}
+
+\begin{equation}
+    y=
+    \begin{bmatrix}
+        x_1\\x_2
+    \end{bmatrix}
+\end{equation}
+
+\subsection{Characterize the Equilibrium}
+
+The equilibrium point satisfies $\dot(x)=0$, i.e.
+
+\begin{equation}
+    \begin{cases}
+        x_2=0\\
+        -\nabla l(x_1)-Ax_2=0
+    \end{cases}
+    \Rightarrow
+    \begin{cases}
+        \dot{\omega}=0\\
+        \nabla l(\omega)=0
+    \end{cases}
+\end{equation}
+
+\subsection{Simulation}
+
+
 
 \end{document}
