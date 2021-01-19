@@ -37,7 +37,7 @@
 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=.3\textwidth]{img/pendulum.png}
+    \includegraphics[width=.2\textwidth]{img/pendulum.png}
     \caption{pendulum model}
     \label{fig:pendulum}
 \end{figure}
@@ -111,14 +111,15 @@ When assuming $m=l=1$ with proper unit, equation (\ref{equ:state-space}) can be 
 
 according the equation, we code the simulation as following:
 
-\lstinputlisting[language=Python]{1_2_simulation_of_pendulum.py}
+\lstinputlisting[language=Python]{simulation_of_pendulum_1_2.py}
 
-and getting the output as:
+and getting the results showed in the Figure \ref{fig:pendulum_sim}
+
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=\textwidth]{img/pendulumSim.png}
+    \includegraphics[width=\textwidth]{img/pendulum_sim.png}
     \caption{pendulum simulation output}
-    \label{fig:pendulumSim}
+    \label{fig:pendulum_sim}
 \end{figure}
 
 \section{Matrix calculus}
@@ -335,5 +336,50 @@ so the system equations can be written as
 \end{equation}
 
 with the system equations, we code the following
+
+\lstinputlisting[language=Python]{simulation_of_accelerated_gradient_5_3.py}
+
+Due to don't knowing the matrix $A$, we assuming that
+
+\begin{equation}
+    A=\begin{bmatrix}
+        1 & 1 \\ 1 & 1
+    \end{bmatrix}
+\end{equation}
+
+by switch the cases in the code (line 16),
+i.e. change the different matrix $Q$ and $b$,
+we get the results showed in Figure \ref{fig:gradient_sim_1} and Figure \ref{fig:gradient_sim_2}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.8\textwidth]{img/accelerated_gradient_simulation_case_1.png}
+    \caption{Accelerated gradient system simulation of case 1}
+    \label{fig:gradient_sim_1}
+\end{figure}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.8\textwidth]{img/accelerated_gradient_simulation_case_2.png}
+    \caption{Accelerated gradient system simulation of case 2}
+    \label{fig:gradient_sim_2}
+\end{figure}
+
+In the case 1, $Q=\begin{bmatrix} 5&3\\3&2 \end{bmatrix}$,
+while in the case 2, $Q=\begin{bmatrix} 1&2\\3&4 \end{bmatrix}$.
+Obviously, Figure \ref{fig:gradient_sim_1} shows that the learning in case 1 is successful,
+because the loss decreased to a minima and being stable after some epoches.
+But case 2 in Figure \ref{fig:gradient_sim_2} is not that successful,
+the loss decreased though but not stable, and the loss value is even under $-4\times 10^{35}$,
+which is ridiculous.
+
+With more experiments, we find that the value of matrix $A$ could also influence
+whether the learning is successful. But it's going to be discussed here.
+
+Also, there is a trick when coding the simulation, specifically,
+the args $var\_x$ of the system function $accelerated\_gradient$
+should have one dimension, which is decided by the package $scipy.integrate.solve_ivp$.
+However, the initial $var\_x$ should be a matrix, so the solution is to pass a
+one-dimension array and reshape it inside the function.
 
 \end{document}
