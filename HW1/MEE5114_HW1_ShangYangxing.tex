@@ -1,4 +1,4 @@
-\documentclass[titlepage]{article}
+\documentclass{article}
 \usepackage{graphicx}  % 插入图片
 \usepackage{amsmath}  % 输入公式
 \usepackage{bm}  % 加粗数学符号
@@ -7,7 +7,7 @@
 \usepackage{amssymb}  % 空心粗体
 
 % 设置A4纸
-\usepackage[a4paper]{geometry} 
+\usepackage[a4paper, margin=1in]{geometry} 
 
 \lstset{numbers=left, %设置行号位置
         numberstyle=\tiny, %设置行号大小
@@ -30,6 +30,7 @@
 \begin{document}
 
 \maketitle
+\tableofcontents
 
 \section{ODE and Its Simulation}
 
@@ -247,13 +248,13 @@ so, the angle between A and B is $\frac{\pi}{2}$.
 
 \section{Some linear algebra}
 
-\subsection{Condition}
+\subsection{Condition on A}
 
 Take row reducion to $Ax=b$, if any row come up with the situation 
 that left-hand side of the equation are zeros, while the right-hand side is not, 
 then equation $Ax=b$ has no solution, else it has at least one solution.
 
-\subsection{Compute}
+\subsection{Compute Rank and Null}
 
 $A$ has two linearly independent columns, so $rank(A)=2$. Knowing $a_3+a_1=a_2$ and $a_4-a_3=a_1$, so we can get $a_3=a_2-a_1$ 
 and $a_4=a_1+a_3=a_1+a_2-a_1=a_2$, so
@@ -276,6 +277,8 @@ We can easily find two independent vectors satisfying $Ax=0$
 \end{equation}
 
 So, $Null(A)=\{x_1,x_2\}$
+
+\subsection{Projection Expression}
 
 \section{Gradient Flow}
 
@@ -316,7 +319,7 @@ The equilibrium point satisfies $\dot{x}=0$, i.e.
     \end{cases}
 \end{equation}
 
-\subsection{Simulation}
+\subsection{Simulation of Gradient}
 
 According to the results in Problem 2.3, i.e. equation (\ref{equ:2-3}), we can derive that
 
