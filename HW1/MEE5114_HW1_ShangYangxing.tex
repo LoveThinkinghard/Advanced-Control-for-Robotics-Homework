@@ -5,9 +5,8 @@
 \usepackage{listings}  % 插入代码
 \usepackage{xcolor}  % 高亮代码
 \usepackage{amssymb}  % 空心粗体
-
-% 设置A4纸
-\usepackage[a4paper, margin=1in]{geometry} 
+\usepackage{fancyhdr}
+\usepackage[a4paper, margin=1in]{geometry}  % 设置A4纸
 
 \lstset{numbers=left, %设置行号位置
         numberstyle=\tiny, %设置行号大小
@@ -26,6 +25,9 @@
 \title{\textbf{Advanced Control for Robotics: Homework \#1}}
 \author{Shang Yangxing}
 \date{\today}
+
+\pagestyle{fancy}
+\lhead{\textit{Advanced Control for Robotics of Prof.Zhang}}
 
 \begin{document}
 
@@ -278,7 +280,21 @@ We can easily find two independent vectors satisfying $Ax=0$
 
 So, $Null(A)=\{x_1,x_2\}$
 
-\subsection{Projection Expression}
+\subsection{Projection onto Subspace}
+
+According to a document\footnote{$https://ocw.mit.edu/courses/mathematics/
+18-06sc-linear-algebra-fall-2011/least-squares-determinants-and-eigenvalues/
+projections-onto-subspaces/MIT18\_06SCF11\_Ses2.2sum.pdf$}
+from MIT's Course Linear Algebra, when project a vector y onto 
+the column space of A, the projection matrix $P$ is
+\begin{equation}
+    P=A(A^TA)^{-1}A^T
+\end{equation}
+
+So the projection from y to A is
+\begin{equation}
+    p=A(A^TA)^{-1}A^Ty
+\end{equation} 
 
 \section{Gradient Flow}
 
@@ -379,12 +395,15 @@ which is ridiculous.
 With more experiments, we find that the value of matrix $A$ could also influence
 whether the learning is successful. But it's going to be discussed here.
 
-Also, there is a trick when coding the simulation, specifically,
+Also, there is a trick when coding the simulation\footnote{Source
+code can be find here: 
+https://github.com/LoveThinkinghard/Advanced-Control-for-Robotics-Homework},
+specifically,
 the args $var\_x$ of the system function $accelerated\_gradient$
 should have one dimension, which is decided by the package $scipy.integrate.solve_ivp$.
 However, the initial $var\_x$ should be a matrix, so the solution is to pass a
 one-dimension array and reshape it inside the function.
 
-Source code can be find here: https://github.com/LoveThinkinghard/Advanced-Control-for-Robotics-Homework
+
 
 \end{document}
